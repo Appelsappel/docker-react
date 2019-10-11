@@ -1,0 +1,27 @@
+version: '3'
+
+#services that are created when running compose-up
+services:
+
+#  web is the name of the service
+  web:
+    build:
+#      context defines where do we want the files and folders to come from
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+
+#   volumes defines where the files are referenced from
+    volumes:
+      - /app/node_modules
+      - ./app
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+        - /app/node_modules
+        - ./app
+    command: ["npm", "run", "test"]

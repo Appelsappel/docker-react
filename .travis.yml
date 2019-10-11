@@ -1,0 +1,11 @@
+# anytime we use docker we need sudo
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t appelsappel/docker-react -f Dockerfile.dev .
+
+# all commands need to be executed to do all the tests
+script:
+  - docker run -e CI=true appelsappel/docker-react npm run test
