@@ -8,7 +8,7 @@ before_install:
 
 # all commands need to be executed to do all the tests
 script:
-  - docker run -e CI=true appelsappel/docker-react npm run test
+  - docker run -e CI=true appelsappel/docker-react npm run test -- --coverage
 
 deploy:
 #  telling Travis-ci to use this to deploy
@@ -24,7 +24,4 @@ deploy:
     secure: "$AWS_ACCESS_KEY"
   secret_access_key:
     secure: "$AWS_SECRET_KEY"
-
-
-  http://dockerreact-env.xeabtz3gmb.us-east-2.elasticbeanstalk.com/
 
